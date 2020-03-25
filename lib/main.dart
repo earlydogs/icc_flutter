@@ -117,7 +117,7 @@ class _MainPageState extends State<MainPage> {
     this.setState(() {
       _inputPeriodYear = int.parse(_controllerPeriodYear.text);
     });
-    print(_inputPeriodYear);
+
   }
 
   // GOボタン押下処理
@@ -126,7 +126,7 @@ class _MainPageState extends State<MainPage> {
     if ((_controllerCurrentBalance.text == '') ||
         (_controllerInterestRateYear.text == '') ||
         (_controllerPeriodYear.text == '')) {
-      print('入力エラー');
+      // 入力エラー
       final snackBarInputError = SnackBar(
         content: Text('条件を入れてね！'),
         action: SnackBarAction(
@@ -154,10 +154,6 @@ class _MainPageState extends State<MainPage> {
         _inputMonthlyAddition = Decimal.parse('0');
       });
     }
-
-    print(_inputInterestRateYear);
-    print(_inputInterestRateYearActualNumber);
-    print(_inputInterestRateMonthActualNumber);
 
     // 積立タイプごとに計算分岐
     switch (_additionalType) {
@@ -211,7 +207,7 @@ class _MainPageState extends State<MainPage> {
         break;
       default:
         {
-          print('積立タイプ例外エラー');
+          // 積立タイプ例外エラー
           final snackBarErrorAdditionType = SnackBar(
             content: Text('積立タイプを選択してください'),
             action: SnackBarAction(
@@ -308,9 +304,6 @@ class _MainPageState extends State<MainPage> {
             Decimal.fromInt(10);
         compoundInterestBalance.add(compoundYearValue);
 
-        print('Asshole=${assholeFinalBalance[countYear]}');
-        print('Tanri=${simpleInterestBalance[countYear]}');
-        print('Fukuri=${compoundInterestBalance[countYear]}');
 
         countYear++;
       }
@@ -404,10 +397,6 @@ class _MainPageState extends State<MainPage> {
             Decimal.fromInt(10);
         compoundInterestBalance.add(compoundYearValue);
 
-        print('Asshole=${assholeFinalBalance[countYear]}');
-        print('Tanri=${simpleInterestBalance[countYear]}');
-        print('Fukuri=${compoundInterestBalance[countYear]}');
-
         countYear++;
       }
       count++;
@@ -421,8 +410,10 @@ class _MainPageState extends State<MainPage> {
       _outputFinalCompoundBalance =
           compoundInterestBalance[countYear - 1].toString();
       _outputGrowthRate = ((compoundInterestBalance[countYear - 1].toDouble() /
-                  assholeFinalBalance[countYear - 1].toDouble())
-              .round())
+                      assholeFinalBalance[countYear - 1].toDouble() *
+                      100)
+                  .round() -
+              100)
           .toString();
     });
   }
@@ -498,9 +489,6 @@ class _MainPageState extends State<MainPage> {
             Decimal.fromInt(10);
         compoundInterestBalance.add(compoundYearValue);
 
-        print('Asshole=${assholeFinalBalance[countYear]}');
-        print('Tanri=${simpleInterestBalance[countYear]}');
-        print('Fukuri=${compoundInterestBalance[countYear]}');
 
         countYear++;
       }
@@ -515,8 +503,10 @@ class _MainPageState extends State<MainPage> {
       _outputFinalCompoundBalance =
           compoundInterestBalance[countYear - 1].toString();
       _outputGrowthRate = ((compoundInterestBalance[countYear - 1].toDouble() /
-                  assholeFinalBalance[countYear - 1].toDouble())
-              .round())
+                      assholeFinalBalance[countYear - 1].toDouble() *
+                      100)
+                  .round() -
+              100)
           .toString();
     });
   }
@@ -581,9 +571,6 @@ class _MainPageState extends State<MainPage> {
             Decimal.fromInt(10);
         compoundInterestBalance.add(compoundYearValue);
 
-        print('Asshole=${assholeFinalBalance[countYear]}');
-        print('Tanri=${simpleInterestBalance[countYear]}');
-        print('Fukuri=${compoundInterestBalance[countYear]}');
 
         countYear++;
       } else {
@@ -605,8 +592,10 @@ class _MainPageState extends State<MainPage> {
       _outputFinalCompoundBalance =
           compoundInterestBalance[countYear - 1].toString();
       _outputGrowthRate = ((compoundInterestBalance[countYear - 1].toDouble() /
-                  assholeFinalBalance[countYear - 1].toDouble())
-              .round())
+                      assholeFinalBalance[countYear - 1].toDouble() *
+                      100)
+                  .round() -
+              100)
           .toString();
     });
   }
